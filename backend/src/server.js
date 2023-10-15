@@ -36,6 +36,11 @@ async function setupServer() {
     // Agrega el enrutador principal al servidor
     server.use("/api", indexRoutes);
 
+    server.use('/uploads', express.static('uploads'))
+    // Importa y usa las rutas
+    const uploadRoutes = require('./routes/upload');
+    server.use('/api', uploadRoutes);
+
     // Inicia el servidor en el puerto especificado
     server.listen(PORT, () => {
       console.log(`=> Servidor corriendo en ${HOST}:${PORT}/api`);
